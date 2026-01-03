@@ -36,13 +36,23 @@ const DiscoverSection = () => {
     return (
         <section id="descubre" className="section-padding" style={{ background: '#f9fafb', paddingTop: '2rem' }}>
             <div className="container">
-                <div style={{
+                <div className="discover-card" style={{
                     border: '3px solid var(--color-primary)',
                     borderRadius: '40px',
                     padding: '3rem 2rem',
                     backgroundColor: 'white',
                     boxShadow: 'var(--shadow)'
                 }}>
+                    <style>{`
+                        @media (max-width: 768px) {
+                            .discover-card {
+                                padding: 2rem 1.5rem !important;
+                            }
+                            .discover-card h2 {
+                                font-size: 2rem !important;
+                            }
+                        }
+                    `}</style>
                     <div className="animate-fade-up" style={{ textAlign: 'center', marginBottom: '3rem' }}>
                         <span style={{
                             color: 'var(--color-secondary)',

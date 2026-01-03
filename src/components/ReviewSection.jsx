@@ -17,6 +17,13 @@ const ReviewSection = ({ type, itemId, reviews }) => {
 
     return (
         <div style={{ marginTop: '1.5rem', borderTop: '1px solid #eee', paddingTop: '1rem' }}>
+            <style>{`
+                @media (max-width: 768px) {
+                    h4 {
+                        font-size: 0.85rem !important;
+                    }
+                }
+            `}</style>
             <h4 style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>Opiniones ({reviews.length})</h4>
 
             {/* List */}

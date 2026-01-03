@@ -34,13 +34,23 @@ const FeaturedSection = () => {
     return (
         <section className="section-padding" style={{ background: 'white' }}>
             <div className="container">
-                <div style={{
+                <div className="featured-card" style={{
                     border: '3px solid var(--color-primary)',
                     borderRadius: '40px',
                     padding: '3rem 2rem',
                     backgroundColor: 'white',
                     boxShadow: 'var(--shadow)'
                 }}>
+                    <style>{`
+                        @media (max-width: 768px) {
+                            .featured-card {
+                                padding: 2rem 1.5rem !important;
+                            }
+                            .featured-card h2 {
+                                font-size: 2rem !important;
+                            }
+                        }
+                    `}</style>
                     <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
                         <span style={{ color: 'var(--color-secondary)', fontWeight: 700, textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '2px' }}>
                             Lo Mejor de la Semana
