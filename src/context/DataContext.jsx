@@ -107,7 +107,7 @@ export const DataProvider = ({ children }) => {
     try {
       const saved = localStorage.getItem(key);
       const savedVersion = localStorage.getItem('dataVersion');
-      const CURRENT_VERSION = '1.9';
+      const CURRENT_VERSION = '2.0';
       if (saved && savedVersion === CURRENT_VERSION) {
         return JSON.parse(saved);
       }
@@ -183,7 +183,7 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     if (!isFirebaseEnabled) {
       localStorage.setItem('restaurants', JSON.stringify(restaurants));
-      localStorage.setItem('dataVersion', '1.9');
+      localStorage.setItem('dataVersion', '2.0');
       localStorage.setItem('accommodations', JSON.stringify(accommodations));
       localStorage.setItem('wineries', JSON.stringify(wineries));
       localStorage.setItem('transport', JSON.stringify(transport));
