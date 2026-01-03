@@ -7,6 +7,22 @@ const ListingLayout = ({ title, subtitle, sidebar, content }) => {
 
     return (
         <div className="listing-layout" style={{ maxWidth: '1440px', margin: '0 auto', padding: '2rem 5vw' }}>
+            <style>{`
+                .listing-layout {
+                    padding-top: 100px !important; /* Base padding for desktop */
+                }
+                @media (max-width: 900px) {
+                    .listing-layout {
+                        padding-top: 120px !important; /* Extra padding for mobile header */
+                    }
+                    /* Ensure SidebarFilters toggle doesn't get hidden */
+                    .filter-container {
+                        position: relative;
+                        z-index: 10;
+                    }
+                }
+            `}</style>
+
             {/* Header */}
             <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
                 <h1 style={{ fontSize: '3rem', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>{title}</h1>
@@ -26,13 +42,6 @@ const ListingLayout = ({ title, subtitle, sidebar, content }) => {
             <div className="content-column">
                 {content}
             </div>
-
-            <style>{`
-        /* No specific responsive hiding needed anymore */
-        @media (max-width: 900px) {
-            /* Any specific adjustments for small screens if needed */
-        }
-      `}</style>
         </div>
     );
 };
