@@ -40,7 +40,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1rem', textAlign: 'center', opacity: 0.5, fontSize: '0.75rem' }}>
-                    <p>&copy; 2025 Sanlúcar Travel. Todos los derechos reservados.</p>
+                    <p>&copy; 2025 Sanlúcar Travel. Todos los derechos reservados. <span style={{ opacity: 0.3, fontSize: '0.6rem' }}>v2.0</span></p>
                 </div>
             </div>
         </footer>
