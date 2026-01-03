@@ -133,54 +133,58 @@ const ListingCard = ({ image, title, subtitle, rating, description, price, onAct
                 
                 @media (max-width: 768px) {
                     .listing-card {
-                        flex-direction: row !important; /* Horizontal Layout */
-                        height: 160px !important; /* Fixed Compact Height */
-                        align-items: stretch;
+                        flex-direction: column !important;
+                        height: auto !important;
+                        margin-bottom: 1.5rem;
+                        border-radius: 12px;
+                        overflow: hidden;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Softer shadow */
                     }
                     
                     .card-image-container {
-                        width: 140px !important; /* Fixed Width for Image */
-                        height: 100% !important;
-                        flex-shrink: 0;
+                        width: 100% !important;
+                        height: 200px !important; /* Cinematic aspect ratio */
                     }
 
                     .card-content {
-                        padding: 1rem !important; /* Smaller padding */
-                        overflow: hidden; /* Prevent spill */
+                        padding: 1.25rem !important;
                     }
 
                     .card-title {
-                        font-size: 1rem !important; /* Smaller Title */
-                        display: -webkit-box;
-                        -webkit-line-clamp: 1;
-                        -webkit-box-orient: vertical;
-                        overflow: hidden;
+                        font-size: 1.2rem !important;
+                        margin-bottom: 0.25rem !important;
                     }
 
                     .card-subtitle {
-                        font-size: 0.8rem !important;
+                        font-size: 0.9rem !important;
+                        margin-bottom: 0.75rem !important;
                     }
 
+                    /* Restore Description visibility */
                     .card-description {
-                        display: none !important; /* Hide description to save space */
+                        display: -webkit-box !important;
+                        font-size: 0.95rem;
+                        line-height: 1.5;
+                        color: #555;
+                        margin-bottom: 1rem;
                     }
 
+                    /* Restore Socials */
                     .card-socials {
-                        display: none !important; /* Hide socials on list view to save space */
+                        display: flex !important;
+                        margin-bottom: 1rem;
                     }
                     
-                    /* Compact Button */
+                    /* Full width button */
                     .card-button {
-                        padding: 0.5rem !important;
-                        font-size: 0.8rem !important;
-                        margin-top: 0.5rem;
+                        width: 100%;
+                        padding: 0.9rem !important;
+                        font-weight: 600;
                     }
                     
                     .card-price-tag {
-                        padding: 2px 8px !important;
-                        font-size: 0.7rem !important;
-                        bottom: 5px !important;
-                        right: 5px !important;
+                        font-size: 0.85rem !important;
+                        padding: 4px 10px !important;
                     }
                 }
             `}</style>
