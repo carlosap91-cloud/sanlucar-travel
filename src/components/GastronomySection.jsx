@@ -11,8 +11,23 @@ const GastronomySection = () => {
                     borderRadius: '40px',
                     padding: '3rem 2rem',
                     backgroundColor: 'white',
-                    boxShadow: 'var(--shadow)'
+                    boxShadow: 'var(--shadow)',
+                    className: 'gastronomy-card' // Added class for targeting
                 }}>
+                    {/* Add responsive styles */}
+                    <style>{`
+                        @media (max-width: 768px) {
+                            #gastronomia .container > div {
+                                padding: 2rem 1.5rem !important;
+                            }
+                            #gastronomia h2 {
+                                font-size: 2rem;
+                            }
+                            #gastronomia p {
+                                font-size: 1rem !important;
+                            }
+                        }
+                    `}</style>
                     <div className="grid" style={{ alignItems: 'center' }}>
                         <div className="animate-fade-up">
                             <span style={{ color: 'var(--color-secondary)', fontWeight: 700, textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '2px' }}>Capital Española de la Gastronomía 2022</span>

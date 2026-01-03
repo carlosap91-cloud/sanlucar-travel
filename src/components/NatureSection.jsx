@@ -11,8 +11,23 @@ const NatureSection = () => {
                     borderRadius: '40px',
                     padding: '3rem 2rem',
                     backgroundColor: '#FDFBFA',
-                    boxShadow: 'var(--shadow)'
+                    boxShadow: 'var(--shadow)',
+                    className: 'nature-card'
                 }}>
+                    {/* Add responsive styles */}
+                    <style>{`
+                        @media (max-width: 768px) {
+                            #experiencias .container > div {
+                                padding: 2rem 1.5rem !important;
+                            }
+                            #experiencias h2 {
+                                font-size: 2rem;
+                            }
+                            #experiencias p {
+                                font-size: 1rem !important;
+                            }
+                        }
+                    `}</style>
                     <div className="grid" style={{ alignItems: 'center', direction: 'rtl' }}>
                         <div className="animate-fade-up" style={{ direction: 'ltr' }}>
                             <span style={{ color: 'var(--color-secondary)', fontWeight: 700, textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '2px' }}>La Naturaleza en Sanlúcar</span>
