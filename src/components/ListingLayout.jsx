@@ -6,14 +6,14 @@ const ListingLayout = ({ title, subtitle, sidebar, content }) => {
     const [showFilters, setShowFilters] = React.useState(false);
 
     return (
-        <div className="listing-layout" style={{ maxWidth: '1440px', margin: '0 auto', padding: '2rem 5vw' }}>
+        <div className="listing-layout" style={{ maxWidth: '1440px', margin: '0 auto', padding: '2rem 5vw', flex: 1, width: '100%' }}>
             <style>{`
                 .listing-layout {
-                    padding-top: 100px !important; /* Base padding for desktop */
+                    padding-top: 2rem !important; /* Standardized desktop padding (was 100px) */
                 }
                 @media (max-width: 900px) {
                     .listing-layout {
-                        padding-top: 120px !important; /* Extra padding for mobile header */
+                        padding-top: 2rem !important; /* Standardized mobile padding */
                     }
                     /* Ensure SidebarFilters toggle doesn't get hidden */
                     .filter-container {

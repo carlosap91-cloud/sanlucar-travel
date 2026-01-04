@@ -42,20 +42,12 @@ function App() {
         <Router>
           <ScrollToTop />
 
-          <div className="app-layout" style={{ display: 'flex' }}>
+          <div className="app-layout">
             {/* Sidebar Navigation */}
             <Sidebar />
 
             {/* Main Content Area */}
-            <div className="main-content" style={{
-              flex: 1,
-              marginLeft: '260px', // Matches Sidebar width
-              width: 'calc(100% - 260px)',
-              minHeight: '100vh',
-              display: 'flex',
-              flexDirection: 'column',
-              background: '#f8f9fa' // Light gray dashboard background
-            }}>
+            <div className="main-content">
               <CookieBanner />
 
               <Routes>
@@ -106,16 +98,6 @@ function App() {
               {/* Footer is now inside main content */}
               <Footer />
             </div>
-
-            {/* Responsive Adjustments */}
-            <style>{`
-              @media (max-width: 900px) {
-                .main-content {
-                  margin-left: 0 !important;
-                  width: 100% !important;
-                }
-              }
-            `}</style>
           </div>
 
         </Router>

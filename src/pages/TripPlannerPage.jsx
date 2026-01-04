@@ -93,15 +93,16 @@ const TripPlannerPage = () => {
         <div style={{
             position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
             background: 'rgba(0,0,0,0.6)', zIndex: 10000,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', pading: '1rem'
+            display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem'
         }}>
             <div style={{
-                background: 'white', padding: '2rem', borderRadius: '16px',
+                background: 'white', padding: '2rem', borderRadius: 'var(--radius-card)',
                 maxWidth: '500px', width: '90%', position: 'relative',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
+                boxShadow: 'var(--shadow)'
             }}>
                 <button
                     onClick={() => setShowEmailModal(false)}
+                    aria-label="Cerrar modal"
                     style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer' }}
                 >
                     &times;
@@ -141,7 +142,7 @@ const TripPlannerPage = () => {
                             type="submit"
                             className="btn btn-primary"
                             disabled={emailStatus === 'sending'}
-                            style={{ width: '100%', padding: '1rem', borderRadius: '8px', background: emailStatus === 'sending' ? '#999' : 'var(--color-primary)', border: 'none' }}
+                            style={{ width: '100%', padding: '1rem', borderRadius: 'var(--radius-btn)', background: emailStatus === 'sending' ? '#999' : 'var(--color-primary)', border: 'none' }}
                         >
                             {emailStatus === 'sending' ? 'Enviando...' : 'ENVIAR SOLICITUD'}
                         </button>
@@ -154,12 +155,13 @@ const TripPlannerPage = () => {
     const OptionButton = ({ label, selected, onClick, icon }) => (
         <button
             onClick={onClick}
+            aria-pressed={selected}
             style={{
                 background: selected ? 'var(--color-primary)' : 'white',
                 color: selected ? 'white' : '#333',
                 border: selected ? 'none' : '1px solid #ddd',
                 padding: '1.5rem',
-                borderRadius: '12px',
+                borderRadius: 'var(--radius-card)', // Unified Radius
                 fontSize: '1rem',
                 fontWeight: 600,
                 cursor: 'pointer',
@@ -177,9 +179,30 @@ const TripPlannerPage = () => {
     );
 
     return (
-        <div style={{ paddingTop: '100px', minHeight: '100vh', background: 'var(--color-bg-alt)' }}>
+        <div className="trip-planner-page" style={{ paddingTop: '2rem', minHeight: '100vh', background: 'var(--color-bg-alt)' }}>
+            <style>{`
+                @media (max-width: 768px) {
+                    .trip-planner-page {
+                        padding-top: 2rem !important; /* Mobile spacing fix */
+                    }
+                    .section-padding {
+                        padding-top: 1rem !important;
+                        padding-bottom: 2rem !important;
+                        padding-left: 1rem !important; /* Ensure side breathing room */
+                        padding-right: 1rem !important;
+                    }
+                    .glass-card {
+                        padding: 1.5rem !important; /* Reduce inner padding on mobile */
+                    }
+                    /* Ensure container doesn't overflow */
+                    .container {
+                        width: 100% !important;
+                        max-width: 100% !important;
+                    }
+                }
+            `}</style>
             {showEmailModal && <EmailModal />}
-            <div className="container section-padding" style={{ maxWidth: '800px' }}>
+            <div className="container section-padding" style={{ maxWidth: '800px', margin: '0 auto' }}>
 
                 {/* Header */}
                 <div className="text-center" style={{ marginBottom: '3rem' }}>
@@ -203,13 +226,14 @@ const TripPlannerPage = () => {
                 </div>
 
                 {/* Form Card */}
-                <div className="glass" style={{ background: 'white', padding: '3rem', borderRadius: '24px' }}>
+                <div className="glass glass-card" style={{ background: 'white', padding: '3rem', borderRadius: 'var(--radius-card)' }}>
 
                     {step === 1 && (
                         <div className="fade-in">
                             <h2 style={{ marginBottom: '2rem', textAlign: 'center' }}>¿Cuándo te gustaría venir?</h2>
                             <input
                                 type="text"
+                                aria-label="Fechas de viaje"
                                 placeholder="Ej: Mediados de Julio, Puente de Diciembre..."
                                 value={selections.dates}
                                 onChange={e => setSelections({ ...selections, dates: e.target.value })}
@@ -267,7 +291,7 @@ const TripPlannerPage = () => {
                                 <OptionButton label="Premium / Lujo" icon="💎" selected={selections.style === 'Premium'} onClick={() => setSelections({ ...selections, style: 'Premium' })} />
                             </div>
 
-                            <div style={{ background: '#f8f9fa', padding: '1.5rem', borderRadius: '12px', textAlign: 'center' }}>
+                            <div style={{ background: '#f8f9fa', padding: '1.5rem', borderRadius: 'var(--radius-card)', textAlign: 'center' }}>
                                 <p style={{ marginBottom: '1rem', fontWeight: 600 }}>Tu Pack Personalizado:</p>
                                 <ul style={{ listStyle: 'none', padding: 0, color: '#666', marginBottom: '1.5rem' }}>
                                     <li>📅 {selections.dates}</li>
@@ -283,7 +307,7 @@ const TripPlannerPage = () => {
                                         checked={selections.privacyAccepted || false}
                                         onChange={e => setSelections({ ...selections, privacyAccepted: e.target.checked })}
                                     />
-                                    <label htmlFor="privacy-check" style={{ lineHeight: '1.4' }}>
+                                    <label htmlFor="planner-privacy" style={{ lineHeight: '1.4' }}>
                                         He leído y acepto la <Link to="/privacidad" target="_blank" style={{ textDecoration: 'underline', fontWeight: 'bold', fontStyle: 'italic', color: 'inherit' }}>Política de Privacidad</Link> y el tratamiento de mis datos para gestionar la reserva.
                                     </label>
                                 </div>
@@ -295,7 +319,8 @@ const TripPlannerPage = () => {
                                             width: '100%', padding: '1rem', fontSize: '1.1rem', background: '#25D366', border: 'none',
                                             opacity: selections.privacyAccepted ? 1 : 0.6,
                                             cursor: selections.privacyAccepted ? 'pointer' : 'not-allowed',
-                                            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                                            borderRadius: 'var(--radius-btn)'
                                         }}
                                         onClick={handleSubmit}
                                         disabled={!selections.style || !selections.privacyAccepted}
@@ -305,7 +330,7 @@ const TripPlannerPage = () => {
 
                                     <button
                                         style={{
-                                            width: '100%', padding: '1rem', fontSize: '1.1rem', background: '#e0e0e0', border: 'none', borderRadius: '50px', color: '#333', fontWeight: 700,
+                                            width: '100%', padding: '1rem', fontSize: '1.1rem', background: '#e0e0e0', border: 'none', borderRadius: 'var(--radius-btn)', color: '#333', fontWeight: 700,
                                             opacity: selections.privacyAccepted ? 1 : 0.6,
                                             cursor: selections.privacyAccepted ? 'pointer' : 'not-allowed',
                                             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'

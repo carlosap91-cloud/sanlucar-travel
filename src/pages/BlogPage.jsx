@@ -15,7 +15,7 @@ const BlogPage = () => {
 
                 <div className="blog-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
                     {/* Post 1 */}
-                    <div className="glass" style={{ background: 'white', borderRadius: '20px', overflow: 'hidden', boxShadow: 'var(--shadow)', cursor: 'pointer', transition: 'transform 0.3s' }} onClick={() => { }}>
+                    <div className="glass card-hover-effect" style={{ background: 'white', borderRadius: '20px', overflow: 'hidden', boxShadow: 'var(--shadow)', cursor: 'pointer', transition: 'transform 0.3s', border: '3px solid var(--color-secondary)' }} onClick={() => { }}>
                         <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&q=80&w=800" alt="Plaza Cabildo" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
                         <div style={{ padding: '1.5rem' }}>
                             <span style={{ color: 'var(--color-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>Gastronomía • 2 Ene 2026</span>
@@ -26,7 +26,7 @@ const BlogPage = () => {
                     </div>
 
                     {/* Post 2 */}
-                    <div className="glass" style={{ background: 'white', borderRadius: '20px', overflow: 'hidden', boxShadow: 'var(--shadow)', cursor: 'pointer', transition: 'transform 0.3s' }} onClick={() => { }}>
+                    <div className="glass card-hover-effect" style={{ background: 'white', borderRadius: '20px', overflow: 'hidden', boxShadow: 'var(--shadow)', cursor: 'pointer', transition: 'transform 0.3s', border: '3px solid var(--color-secondary)' }} onClick={() => { }}>
                         <img src="https://images.unsplash.com/photo-1540206351-d6465b3ac5c1?auto=format&fit=crop&q=80&w=800" alt="Puesta de Sol" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
                         <div style={{ padding: '1.5rem' }}>
                             <span style={{ color: 'var(--color-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>Guías • 28 Dic 2025</span>

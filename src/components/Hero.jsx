@@ -14,10 +14,19 @@ const Hero = () => {
     };
 
     return (
-        <section id="inicio" className="container" style={{
-            marginTop: '100px',
+        <section id="inicio" className="container hero-container" style={{
             marginBottom: '4rem'
         }}>
+            <style>{`
+                .hero-container {
+                    margin-top: 100px;
+                }
+                @media (max-width: 768px) {
+                    .hero-container {
+                        margin-top: 20px !important; /* Fix dead space on mobile */
+                    }
+                }
+            `}</style>
             <div className="hero-card" style={{
                 position: 'relative',
                 display: 'flex',
@@ -154,7 +163,7 @@ const Hero = () => {
                                         minWidth: 0
                                     }}
                                 />
-                                <button type="submit" style={{
+                                <button type="submit" aria-label="Buscar" style={{
                                     background: 'var(--color-secondary)',
                                     color: 'white',
                                     border: 'none',

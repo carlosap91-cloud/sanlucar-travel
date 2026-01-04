@@ -80,17 +80,46 @@ export const DataProvider = ({ children }) => {
 
   // 4. ALOJAMIENTOS 🏨
   const initialAccommodations = [
-    // Copia este bloque para añadir hotel
-    /*
     {
-        id: 1,
-        name: 'Hotel Guadalquivir',
-        address: 'Calzada del Ejército',
-        description: 'Vistas panorámicas a la desembocadura y a Doñana.',
-        image: 'LINK_DE_IMAGEN',
-        price: '€€€'
+      id: 1,
+      name: 'Hotel Guadalquivir',
+      address: 'Calzada del Ejército, s/n',
+      description: 'Vistas panorámicas a la desembocadura y a Doñana. El referente de la ciudad.',
+      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800',
+      price: '€€€',
+      type: 'Hotel',
+      socials: { website: '#' }
+    },
+    {
+      id: 2,
+      name: 'Palacio de los Duques',
+      address: 'Plaza del Cabildo',
+      description: 'Duerme en un antiguo palacio renovado con patio andaluz.',
+      image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=800',
+      price: '€€€',
+      type: 'Boutique',
+      socials: { website: '#' }
+    },
+    {
+      id: 3,
+      name: 'Hostal La Salle',
+      address: 'Calle San Juan',
+      description: 'Económico, céntrico y familiar. Ideal para escapadas fin de semana.',
+      image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=800',
+      price: '€',
+      type: 'Hostal',
+      socials: { website: '#' }
+    },
+    {
+      id: 4,
+      name: 'Apartamentos Doñana',
+      address: 'Bajo de Guía',
+      description: 'Apartamentos turísticos en primera línea de playa con terraza.',
+      image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800',
+      price: '€€',
+      type: 'Apartamento',
+      socials: { website: '#' }
     }
-    */
   ];
 
   // 5. TRANSPORTES 🚌
@@ -107,7 +136,7 @@ export const DataProvider = ({ children }) => {
     try {
       const saved = localStorage.getItem(key);
       const savedVersion = localStorage.getItem('dataVersion');
-      const CURRENT_VERSION = '2.0';
+      const CURRENT_VERSION = '2.1'; // Bumped to force load of new dummy data
       if (saved && savedVersion === CURRENT_VERSION) {
         return JSON.parse(saved);
       }

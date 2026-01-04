@@ -1,117 +1,164 @@
 import React from 'react';
 import { useData } from '../context/DataContext';
 import ListingLayout from '../components/ListingLayout';
-import SidebarFilters from '../components/SidebarFilters';
 import ListingCard from '../components/ListingCard';
 
 const TransportPage = () => {
     const { transport } = useData();
 
-    // Mock Static Data for Public Transport & Taxis
-    const publicTransport = [
+    // 1. Cómo Llegar (Interurbano)
+    const arrivalConnections = [
         {
-            id: 'bus-urban',
-            name: 'Autobuses Urbanos (TUSSA)',
-            description: 'Conecta toda la ciudad con sus 4 líneas principales. Frecuencia de 15-20 min.',
-            image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800', // Generic Bus
-            price: '1.10€',
-            service: 'Transporte Público'
+            id: 'airport-jerez',
+            name: 'Aeropuerto de Jerez',
+            service: 'Avión (27 km)',
+            description: 'Conexiones nacionales e internacionales. A 30 min en taxi o coche.',
+            image: 'https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?auto=format&fit=crop&q=80&w=800',
+            price: 'Taxi ~45€',
+            link: 'https://www.aena.es/es/jerez.html',
+            actionLabel: 'Info Aeropuerto'
         },
         {
-            id: 'bus-inter',
-            name: 'Consorcio de Transportes',
-            description: 'Conexiones con Sevilla, Jerez, Cádiz y Chipiona. Estación en Calzada del Ejército.',
-            image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80&w=800', // Intercity Bus
+            id: 'train-jerez',
+            name: 'Estación de Tren Jerez',
+            service: 'Renfe / AVE (25 km)',
+            description: 'Enlace alta velocidad. Conexión con Sanlúcar mediante Bus o Taxi.',
+            image: 'https://images.unsplash.com/photo-1532105956690-b14a887bb963?auto=format&fit=crop&q=80&w=800',
+            price: 'Bus 2.50€',
+            link: 'https://www.renfe.com',
+            actionLabel: 'Horarios Renfe'
+        },
+        {
+            id: 'bus-interurban',
+            name: 'Estación de Autobuses',
+            service: 'InterBus / Monbus',
+            description: 'Av. Constitución. Conexiones con Sevilla, Cádiz y Chipiona. Tel: 956 38 50 60',
+            image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800',
             price: 'Desde 2€',
-            service: 'Interurbano'
+            link: 'https://comprasweb.interbus.es/venta/',
+            actionLabel: 'Comprar Billete'
         }
     ];
 
-    const taxiService = {
-        name: 'Radio Taxi Sanlúcar',
-        description: 'Servicio 24 horas disponible en toda la ciudad. Paradas principales en La Calzada y El Cabildo.',
-        phone: '956 36 00 04',
-        image: 'https://images.unsplash.com/photo-1619059558110-c45be64b73ae?auto=format&fit=crop&q=80&w=800'
-    };
+    // 2. Moverse por Sanlúcar (Urbano)
+    const urbanTransport = [
+        {
+            id: 'urban-bus',
+            name: 'Autobuses Urbanos',
+            service: 'Tussa / Avanza',
+            description: (
+                <span>
+                    Conecta toda la ciudad. Líneas principales:<br />
+                    • <b>L1:</b> La Algaida - Bonanza - Centro<br />
+                    • <b>L2:</b> La Jara - Calzada - Centro<br />
+                    • <b>L3:</b> Hospital - Barrio Alto - Centro
+                </span>
+            ),
+            image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80&w=800',
+            price: 'Ordinario 1.10€',
+            link: 'https://sanlucar.avanzagrupo.com/lineas-y-horarios/plano-general',
+            actionLabel: 'Ver Horarios y Líneas'
+        },
+        {
+            id: 'taxi',
+            name: 'Radio Taxi Sanlúcar',
+            service: '24 Horas / 7 Días',
+            description: 'Paradas: Hospital, El Palmar, Barrio Alto, Plaza del Pino. Tel: 956 360 004 / 956 360 005',
+            image: 'https://images.unsplash.com/photo-1619059558110-c45be64b73ae?auto=format&fit=crop&q=80&w=800',
+            price: 'Taxímetro',
+            link: 'tel:956360004',
+            actionLabel: 'Llamar al Taxi'
+        },
+        {
+            id: 'boat-donana',
+            name: 'Buque Real Fernando',
+            service: 'Conexión Doñana',
+            description: 'Travesía fluvial al P.N. Doñana desde Bajo de Guía. Naturaleza viva.',
+            image: 'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80&w=800',
+            price: 'Consultar Tarifa',
+            link: 'https://visitasdonana.com/',
+            actionLabel: 'Reservar Visita'
+        }
+    ];
 
     return (
         <ListingLayout
-            title={<>Movilidad y <span style={{ color: 'var(--color-secondary)' }}>Transporte</span></>}
-            subtitle="Muévete por Sanlúcar cómodamente: autobús, taxi o bicicleta."
-
+            title={<>Movilidad y <span className="text-secondary">Transporte</span></>}
+            subtitle="Toda la información para llegar y moverte por Sanlúcar de Barrameda."
             content={
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+                <div className="transport-container">
 
-                    {/* SECCIÓN 1: TRANSPORTE PÚBLICO */}
-                    <section>
-                        <h2 style={{ fontSize: '2rem', color: 'var(--color-primary)', marginBottom: '1.5rem', borderBottom: '2px solid #eee', paddingBottom: '0.5rem' }}>
-                            🚌 Transporte Público
-                        </h2>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
-                            {publicTransport.map(item => (
+                    {/* SECCIÓN 1: CÓMO LLEGAR */}
+                    <section className="transport-section">
+                        <h2 className="section-title" style={{ marginBottom: '3rem', fontSize: '2rem' }}>🚆 Cómo llegar a Sanlúcar</h2>
+                        <div className="grid">
+                            {arrivalConnections.map(item => (
                                 <ListingCard
                                     key={item.id}
                                     image={item.image}
                                     title={item.name}
                                     subtitle={item.service}
-                                    rating={null} // No ratings for public services
                                     description={item.description}
                                     price={item.price}
+                                    actionLabel={item.actionLabel}
                                     borderColor="var(--color-secondary)"
-                                    actionLabel="Ver Horarios"
-                                    onAction={() => window.open('https://siu.cmtbc.es/es/horarios_lineas_tabla.php?linea=5', '_blank')} // Example link
+                                    onAction={() => window.open(item.link, '_blank')}
                                 />
                             ))}
                         </div>
                     </section>
 
-                    {/* SECCIÓN 2: TAXIS */}
-                    <section>
-                        <h2 style={{ fontSize: '2rem', color: 'var(--color-primary)', marginBottom: '1.5rem', borderBottom: '2px solid #eee', paddingBottom: '0.5rem' }}>
-                            🚕 Taxis
-                        </h2>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
-                            <ListingCard
-                                image={taxiService.image}
-                                title={taxiService.name}
-                                subtitle="Servicio 24h"
-                                description={taxiService.description}
-                                price={null}
-                                borderColor="var(--color-secondary)"
-                                actionLabel={`📞 Llamar: ${taxiService.phone}`}
-                                onAction={() => window.open(`tel:${taxiService.phone.replace(/\s/g, '')}`, '_self')}
-                            />
+                    {/* SECCIÓN 2: MOVERSE POR LA CIUDAD (URBANO) */}
+                    <section className="transport-section" style={{ marginTop: '4rem' }}>
+                        <h2 className="section-title" style={{ marginBottom: '3rem', fontSize: '2rem' }}>🏙️ Transporte Urbano</h2>
+                        <div className="grid">
+                            {urbanTransport.map(item => (
+                                <ListingCard
+                                    key={item.id}
+                                    image={item.image}
+                                    title={item.name}
+                                    subtitle={item.service}
+                                    description={item.description}
+                                    price={item.price}
+                                    actionLabel={item.actionLabel}
+                                    borderColor="var(--color-secondary)"
+                                    onAction={() => {
+                                        if (item.link.startsWith('tel:')) {
+                                            window.open(item.link, '_self');
+                                        } else {
+                                            window.open(item.link, '_blank');
+                                        }
+                                    }}
+                                />
+                            ))}
                         </div>
                     </section>
 
-                    {/* SECCIÓN 3: OTROS / ALQUILERES (Dinámico) */}
-                    <section>
-                        <h2 style={{ fontSize: '2rem', color: 'var(--color-primary)', marginBottom: '1.5rem', borderBottom: '2px solid #eee', paddingBottom: '0.5rem' }}>
-                            🚲 Otros / Alquileres
-                        </h2>
-                        {transport.length > 0 ? (
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
+                    {/* SECCIÓN 3: OTROS / ALQUILERES */}
+                    <section className="transport-section" style={{ marginTop: '4rem' }}>
+                        <h2 className="section-title" style={{ marginBottom: '3rem', fontSize: '2rem' }}>🚲 Alquiler y Otros</h2>
+                        {transport && transport.length > 0 ? (
+                            <div className="grid">
                                 {transport.map(item => (
                                     <ListingCard
                                         key={item.id}
                                         image={item.image}
                                         title={item.name}
                                         subtitle={item.service}
-                                        rating={5}
                                         description={item.description}
                                         price={item.price}
-                                        socials={item.socials}
+                                        actionLabel="Más Info"
                                         borderColor="var(--color-secondary)"
                                         onAction={() => { }}
-                                        actionLabel="Más Info"
                                     />
                                 ))}
                             </div>
                         ) : (
-                            <p style={{ color: '#999', fontStyle: 'italic' }}>No hay servicios adicionales registrados actualmente.</p>
+                            <div className="glass glass-card" style={{ padding: '2rem', textAlign: 'center', borderRadius: 'var(--radius-card)' }}>
+                                <p style={{ color: '#666' }}>Próximamente disponible el servicio de alquiler de bicicletas y motos eléctricas.</p>
+                            </div>
                         )}
                     </section>
-
                 </div>
             }
         />

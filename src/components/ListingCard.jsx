@@ -3,31 +3,17 @@ import React from 'react';
 const ListingCard = ({ image, title, subtitle, rating, description, price, onAction, actionLabel = "Ver disponibilidad", socials, borderColor }) => {
     return (
         <>
-            <div className="listing-card" style={{
+            <div className="listing-card card-hover-effect" style={{
                 background: 'white',
-                borderRadius: '16px',
+                borderRadius: 'var(--radius-card)',
                 overflow: 'hidden',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                boxShadow: 'var(--shadow)',
                 border: borderColor ? `3px solid ${borderColor}` : '1px solid #f3f4f6',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                 display: 'flex',
                 flexDirection: 'column',
                 height: '100%',
                 position: 'relative'
-            }}
-                onMouseEnter={(e) => {
-                    if (window.innerWidth > 768) { // Only animate on desktop
-                        e.currentTarget.style.transform = 'translateY(-5px)';
-                        e.currentTarget.style.boxShadow = '0 15px 40px rgba(0,0,0,0.1)';
-                    }
-                }}
-                onMouseLeave={(e) => {
-                    if (window.innerWidth > 768) {
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
-                    }
-                }}
-            >
+            }}>
                 {/* Image Container */}
                 <div className="card-image-container" style={{ position: 'relative', overflow: 'hidden' }}>
                     <img
@@ -88,7 +74,7 @@ const ListingCard = ({ image, title, subtitle, rating, description, price, onAct
                         {socials && (
                             <div className="card-socials" style={{ display: 'flex', gap: '10px', marginBottom: '1.2rem', justifyContent: 'flex-start' }}>
                                 {Object.entries(socials).map(([net, link]) => (
-                                    <a key={net} href={link} target="_blank" rel="noreferrer" style={{
+                                    <a key={net} href={link} target="_blank" rel="noreferrer" aria-label={`Visitar ${net}`} style={{
                                         width: '32px', height: '32px', background: '#f3f4f6', borderRadius: '50%',
                                         display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#6b7280',
                                         fontSize: '0.9rem', textDecoration: 'none', transition: '0.2s'
@@ -104,6 +90,7 @@ const ListingCard = ({ image, title, subtitle, rating, description, price, onAct
 
                         <button
                             onClick={onAction}
+                            aria-label={`${actionLabel} para ${title}`}
                             className="card-button"
                             style={{
                                 width: '100%',
@@ -111,7 +98,7 @@ const ListingCard = ({ image, title, subtitle, rating, description, price, onAct
                                 background: 'var(--color-primary)',
                                 color: 'white',
                                 border: 'none',
-                                borderRadius: '12px',
+                                borderRadius: 'var(--radius-btn)',
                                 fontSize: '1rem',
                                 fontWeight: '600',
                                 cursor: 'pointer',

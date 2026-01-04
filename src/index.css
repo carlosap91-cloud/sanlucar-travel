@@ -17,8 +17,11 @@
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
   --transition: all 0.3s ease;
+  --transition: all 0.3s ease;
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  /* Softer shadow */
+  /* Unified Radius Constants */
+  --radius-card: 20px;
+  --radius-btn: 50px;
 }
 
 * {
@@ -54,17 +57,21 @@ h4 {
 
 /* Fluid Typography */
 h1 {
-  font-size: clamp(2rem, 5vw + 1rem, 4rem);
+  font-size: clamp(1.75rem, 5vw + 1rem, 3rem);
+  /* Relaxed min size for mobile */
+  font-weight: 550;
   line-height: 1.1;
 }
 
 h2 {
-  font-size: clamp(1.75rem, 4vw + 0.5rem, 3rem);
+  font-size: clamp(1.75rem, 4vw + 0.5rem, 2.25rem);
+  font-weight: 550;
   line-height: 1.2;
 }
 
 h3 {
-  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.75rem);
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.5rem);
+  font-weight: 550;
 }
 
 a {
@@ -105,11 +112,25 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Card Hover Animation (Performance Optimized) */
+.card-hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+  /* Hint to browser for performance */
+}
+
+@media (min-width: 769px) {
+  .card-hover-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  }
+}
+
 .btn {
   display: inline-block;
   padding: 0.8rem 1.8rem;
   /* Refined padding */
-  border-radius: 50px;
+  border-radius: var(--radius-btn);
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 0.95rem;
@@ -229,5 +250,90 @@ img {
 
   h2 {
     font-size: 2rem;
+  }
+}
+
+/* --- Surgical Layout Refactoring (Strict Mirroring) --- */
+
+/* App Layout Container */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  margin-left: 260px;
+  /* Matching strict sidebar width */
+  width: calc(100% - 260px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8f9fa;
+  /* Strict light gray match */
+}
+
+/* Responsive Fix for Main Content */
+@media (max-width: 900px) {
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding-top: 60px;
+    /* Space for the mobile toggle button */
+  }
+}
+
+
+/* --- Sidebar & Mobile Toggle (Strict Mirroring) --- */
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  border-right: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  z-index: 2500;
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+
+.mobile-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: 45px;
+  height: 45px;
+  z-index: 3000;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  /* Hidden on desktop */
+  cursor: pointer;
+  font-size: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+/* Responsive Logic for Sidebar */
+@media (max-width: 900px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .mobile-toggle {
+    display: flex;
+    /* Show on mobile */
   }
 }

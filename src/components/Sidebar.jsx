@@ -26,45 +26,13 @@ const Sidebar = () => {
             {/* Mobile Toggle Button (Fixed on screen) */}
             <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
-                style={{
-                    position: 'fixed',
-                    top: '1rem',
-                    left: '1rem',
-                    zIndex: 3000,
-                    background: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    padding: '0.5rem',
-                    boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-                    display: 'none', // Hidden on desktop via CSS media query
-                    cursor: 'pointer',
-                    fontSize: '1.5rem',
-                    width: '45px',
-                    height: '45px',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#333'
-                }}
                 className="mobile-toggle"
             >
                 {isMobileOpen ? '✕' : '☰'}
             </button>
 
             {/* Sidebar Container */}
-            <aside className={`sidebar ${isMobileOpen ? 'open' : ''}`} style={{
-                width: '260px',
-                height: '100vh',
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                background: 'white',
-                borderRight: '1px solid #eee',
-                display: 'flex',
-                flexDirection: 'column',
-                zIndex: 2500,
-                transition: 'transform 0.3s ease',
-                overflowY: 'auto'
-            }}>
+            <aside className={`sidebar ${isMobileOpen ? 'open' : ''}`}>
                 {/* Logo Area - NOW CLICKABLE */}
                 <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <div style={{ padding: '1.5rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.8rem', borderBottom: '1px solid #f9f9f9', minHeight: '130px', cursor: 'pointer' }}>
@@ -153,17 +121,6 @@ const Sidebar = () => {
                 }
                 .nav-item.active:hover {
                     filter: brightness(1.1); /* Subtle highlight for active item */
-                }
-                @media (max-width: 900px) {
-                    .sidebar {
-                        transform: translateX(-100%);
-                    }
-                    .sidebar.open {
-                        transform: translateX(0);
-                    }
-                    .mobile-toggle {
-                        display: flex !important; /* Ensure flex for centering */
-                    }
                 }
             `}</style>
         </>
