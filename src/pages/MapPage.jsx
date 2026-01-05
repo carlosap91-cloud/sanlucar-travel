@@ -122,6 +122,7 @@ const MapPage = () => {
                         </div>
 
                         {/* The Iframe */}
+                        {/* The Iframe */}
                         <iframe
                             src={mapUrl}
                             width="100%"
@@ -133,30 +134,43 @@ const MapPage = () => {
                             title="Mapa de Sanlúcar"
                         ></iframe>
 
-                        {/* "Open in Maps" Button - Bottom Left (Next to Satellite usually) */}
+                        {/* MASK to hide "View larger map" (Ampliar el mapa) overlay from Google */}
+                        <div style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '200px',
+                            height: '60px',
+                            background: 'white', // Matches container bg
+                            zIndex: 5,
+                            pointerEvents: 'none' // Allow clicks to pass through if needed, but we want to hide visual text
+                        }}></div>
+
+                        {/* "Open in Maps" Button - Square Icon, aligned with Satellite */}
                         <a
                             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(searchQuery || 'Sanlúcar de Barrameda')}`}
                             target="_blank"
                             rel="noopener noreferrer"
+                            title="Abrir en Google Maps"
                             style={{
                                 position: 'absolute',
-                                bottom: '25px',
-                                left: '70px', // Offset from Satellite/Google logo usually on left
+                                bottom: '25px', // Aligns with typical satellite box bottom
+                                left: '60px',   // Next to satellite box (approx 50px width + gap)
                                 background: 'white',
-                                padding: '8px 16px',
-                                borderRadius: '20px',
+                                width: '40px',
+                                height: '40px',
+                                borderRadius: '2px', // Google buttons are usually slightly rounded squares
                                 textDecoration: 'none',
                                 color: '#333',
-                                fontWeight: '600',
-                                fontSize: '0.9rem',
-                                boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+                                fontSize: '1.2rem',
+                                boxShadow: '0 1px 4px rgba(0,0,0,0.3)',
                                 zIndex: 10,
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: '8px'
+                                justifyContent: 'center'
                             }}
                         >
-                            <span style={{ fontSize: '1.2rem' }}>🗺️</span> Abre Maps
+                            🗺️
                         </a>
                     </div>
                 </div>
