@@ -6,7 +6,8 @@ const MapPage = () => {
     const initialQuery = searchParams.get('q') || '';
 
     const [searchQuery, setSearchQuery] = useState(initialQuery);
-    const [mapUrl, setMapUrl] = useState("https://maps.google.com/maps?q=Sanl%C3%BAcar%20de%20Barrameda&t=&z=14&ie=UTF8&iwloc=&output=embed");
+    // Use 'll' (lat/long) instead of 'q' to avoid the default "Place Card" overlay
+    const [mapUrl, setMapUrl] = useState("https://maps.google.com/maps?ll=36.7788,-6.3533&z=14&t=&output=embed");
 
     useEffect(() => {
         if (initialQuery) {
@@ -131,6 +132,32 @@ const MapPage = () => {
                             referrerPolicy="no-referrer-when-downgrade"
                             title="Mapa de Sanlúcar"
                         ></iframe>
+
+                        {/* "Open in Maps" Button - Bottom Left (Next to Satellite usually) */}
+                        <a
+                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(searchQuery || 'Sanlúcar de Barrameda')}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                position: 'absolute',
+                                bottom: '25px',
+                                left: '70px', // Offset from Satellite/Google logo usually on left
+                                background: 'white',
+                                padding: '8px 16px',
+                                borderRadius: '20px',
+                                textDecoration: 'none',
+                                color: '#333',
+                                fontWeight: '600',
+                                fontSize: '0.9rem',
+                                boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+                                zIndex: 10,
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px'
+                            }}
+                        >
+                            <span style={{ fontSize: '1.2rem' }}>🗺️</span> Abre Maps
+                        </a>
                     </div>
                 </div>
             </section>
