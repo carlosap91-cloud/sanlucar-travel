@@ -52,10 +52,11 @@ const ExperiencesHubPage = () => {
                 />
             }
             content={
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
+                <div className="listing-grid">
                     {filteredExperiences.map(exp => (
                         <ListingCard
                             key={exp.id}
+                            className="compact-card-mobile"
                             image={exp.image}
                             title={exp.name}
                             subtitle={`${exp.type} • ${exp.duration || ''}`}

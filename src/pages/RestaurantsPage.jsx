@@ -69,10 +69,11 @@ const RestaurantsPage = () => {
                 />
             }
             content={
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
+                <div className="listing-grid">
                     {filteredRestaurants.map(rest => (
                         <ListingCard
                             key={rest.id}
+                            className="compact-card-mobile"
                             image={rest.image}
                             title={rest.name}
                             subtitle={rest.cuisine.join(' • ')}

@@ -13,10 +13,11 @@ const ShopsPage = () => {
             subtitle="Apoya al comercio local de Sanlúcar."
             sidebar={<SidebarFilters title="Filtros" filters={[]} />}
             content={
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
+                <div className="listing-grid">
                     {shops.map(shop => (
                         <ListingCard
                             key={shop.id}
+                            className="compact-card-mobile"
                             image={shop.image}
                             title={shop.name}
                             subtitle={shop.address}

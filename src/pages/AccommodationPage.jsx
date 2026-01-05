@@ -71,10 +71,11 @@ const AccommodationPage = () => {
                 />
             }
             content={
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
+                <div className="listing-grid">
                     {filteredAcc.map(acc => (
                         <ListingCard
                             key={acc.id}
+                            className="compact-card-mobile" // Only compact on mobile
                             image={acc.image}
                             title={acc.name}
                             subtitle={acc.type}
@@ -84,7 +85,7 @@ const AccommodationPage = () => {
                             socials={acc.socials}
                             borderColor="var(--color-secondary)"
                             onAction={() => { }}
-                            actionLabel="Solicitar reserva"
+                            actionLabel="Ver"
                         />
                     ))}
                 </div>

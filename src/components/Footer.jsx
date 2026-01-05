@@ -8,9 +8,34 @@ const Footer = () => {
             <div className="container">
                 <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', marginBottom: '1.5rem', gap: '1.5rem' }}>
                     <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.8rem' }}>
-                            <img src={logoImg} alt="Sanlúcar Travel" style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }} />
-                            <h3 style={{ color: 'white', fontSize: '1.1rem', margin: 0 }}>SANLÚCAR TRAVEL</h3>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.8rem' }}>
+                            <div style={{
+                                width: '48px',
+                                minWidth: '48px', // Prevent shrinking
+                                height: '48px',
+                                borderRadius: '50%',
+                                backgroundColor: 'white',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+                                overflow: 'hidden',
+                                padding: '6px', // Balanced padding
+                                flexShrink: 0 // Crucial: prevents circle from squashing on mobile
+                            }}>
+                                <img
+                                    src={logoImg}
+                                    alt="Sanlúcar Travel"
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'contain',
+                                        display: 'block',
+                                        transform: 'translateX(-2px)' // Increased offset for better optical centering
+                                    }}
+                                />
+                            </div>
+                            <h3 style={{ color: 'white', fontSize: '1.2rem', margin: 0, letterSpacing: '0.5px' }}>SANLÚCAR TRAVEL</h3>
                         </div>
                         <p style={{ opacity: 0.7, lineHeight: '1.4' }}>
                             Tu guía definitiva para descubrir los tesoros de Sanlúcar de Barrameda.

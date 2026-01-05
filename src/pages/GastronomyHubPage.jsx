@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import ListingCard from '../components/ListingCard';
 
 const GastronomyHubPage = () => {
+    const navigate = useNavigate();
     const categories = [
         {
             title: 'Restaurantes',
@@ -41,89 +43,21 @@ const GastronomyHubPage = () => {
                     </p>
                 </div>
 
-                <div className="grid" style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                    gap: '1.5rem'
-                }}>
+                <div className="listing-grid">
                     {categories.map((cat, idx) => (
-                        <Link key={idx} to={cat.link} style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <div className="category-card glass" style={{
-                                borderRadius: '20px',
-                                overflow: 'hidden',
-                                transition: 'transform 0.3s ease',
-                                height: '100%',
-                                cursor: 'pointer',
-                                border: '3px solid var(--color-secondary)',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                background: 'white'
-                            }}
-                                onMouseEnter={(e) => {
-                                    if (window.innerWidth > 768) e.currentTarget.style.transform = 'translateY(-10px)'
-                                }}
-                                onMouseLeave={(e) => {
-                                    if (window.innerWidth > 768) e.currentTarget.style.transform = 'translateY(0)'
-                                }}
-                            >
-                                <div className="cat-image-wrapper" style={{ height: '200px', margin: '15px', borderRadius: '15px', overflow: 'hidden' }}>
-                                    <img src={cat.image} alt={cat.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                </div>
-                                <div className="cat-content" style={{ padding: '2rem', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-                                    <h3 style={{ fontSize: 'clamp(1.1rem, 5vw, 1.6rem)', marginBottom: '0.5rem', color: 'var(--color-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} className="cat-title">{cat.title}</h3>
-                                    <p style={{ color: '#666' }} className="cat-desc">{cat.description}</p>
-                                    <div style={{ marginTop: 'auto', paddingTop: '1.5rem', color: 'var(--color-primary)', fontWeight: 700 }} className="cat-action">
-                                        Explorar ➝
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
+                        <div key={idx} onClick={() => navigate(cat.link)} style={{ cursor: 'pointer' }}>
+                            <ListingCard
+                                image={cat.image}
+                                title={cat.title}
+                                description={cat.description}
+                                actionLabel="Explorar"
+                                onAction={() => navigate(cat.link)}
+                                className="compact-card-mobile"
+                                borderColor="var(--color-secondary)"
+                            />
+                        </div>
                     ))}
                 </div>
-
-                {/* Mobile Optimization for Categories */}
-                <style>{`
-                    @media (max-width: 768px) {
-                        .grid {
-                            grid-template-columns: 1fr !important;
-                            gap: 1rem !important;
-                        }
-                        .category-card {
-                            flex-direction: row !important;
-                            height: 120px !important;
-                            align-items: center !important;
-                            border-radius: 16px !important;
-                            margin: 0 !important;
-                        }
-                        .cat-image-wrapper {
-                            height: 100% !important;
-                            width: 120px !important;
-                            margin: 0 !important;
-                            border-radius: 0 !important;
-                            flex-shrink: 0;
-                        }
-                        .cat-content {
-                            padding: 0 1rem !important;
-                            align-items: flex-start !important;
-                            text-align: left !important;
-                        }
-                        .cat-title {
-                            font-size: 1.2rem !important;
-                            margin-bottom: 0.2rem !important;
-                        }
-                        .cat-desc {
-                            font-size: 0.85rem !important;
-                            display: -webkit-box;
-                            -webkit-line-clamp: 2;
-                            -webkit-box-orient: vertical;
-                            overflow: hidden;
-                            margin: 0 !important;
-                        }
-                        .cat-action {
-                            display: none !important; /* Hide button text for cleanliness */
-                        }
-                    }
-                `}</style>
             </div>
         </div>
     );

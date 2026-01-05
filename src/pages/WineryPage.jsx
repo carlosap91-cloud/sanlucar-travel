@@ -47,10 +47,11 @@ const WineryPage = () => {
                 />
             }
             content={
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
+                <div className="listing-grid">
                     {filteredWineries.map(winery => (
                         <ListingCard
                             key={winery.id}
+                            className="compact-card-mobile"
                             image={winery.image}
                             title={winery.name}
                             subtitle={winery.style}

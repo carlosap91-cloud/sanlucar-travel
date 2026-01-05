@@ -13,10 +13,11 @@ const MarketsPage = () => {
             subtitle="El producto fresco de la huerta y el mar."
             sidebar={<SidebarFilters title="Filtros" filters={[]} />}
             content={
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
+                <div className="listing-grid">
                     {markets.map(market => (
                         <ListingCard
                             key={market.id}
+                            className="compact-card-mobile"
                             image={market.image}
                             title={market.name}
                             subtitle={market.address}

@@ -62,7 +62,7 @@ export const DataProvider = ({ children }) => {
       description: 'Cuna de la Manzanilla Solear. Visitas guiadas y museo del vino.',
       image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&q=80&w=800',
       mapLink: 'https://maps.google.com/?q=Bodegas+Barbadillo',
-      socials: { instagram: '#' }
+      socials: { facebook: '#', instagram: '#', twitter: '#', linkedin: '#' }
     }
   ];
 
@@ -74,7 +74,8 @@ export const DataProvider = ({ children }) => {
       description: 'Visita guiada en 4x4 por el Parque Nacional durante la puesta de sol.',
       image: 'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&q=80&w=800',
       price: '35€',
-      duration: '3 horas'
+      duration: '3 horas',
+      socials: { facebook: '#', instagram: '#', twitter: '#', linkedin: '#' }
     }
   ];
 
@@ -88,7 +89,7 @@ export const DataProvider = ({ children }) => {
       image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800',
       price: '€€€',
       type: 'Hotel',
-      socials: { website: '#' }
+      socials: { facebook: '#', instagram: '#', twitter: '#', linkedin: '#' }
     },
     {
       id: 2,
@@ -98,7 +99,7 @@ export const DataProvider = ({ children }) => {
       image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=800',
       price: '€€€',
       type: 'Boutique',
-      socials: { website: '#' }
+      socials: { facebook: '#', instagram: '#', twitter: '#', linkedin: '#' }
     },
     {
       id: 3,
@@ -108,7 +109,7 @@ export const DataProvider = ({ children }) => {
       image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=800',
       price: '€',
       type: 'Hostal',
-      socials: { website: '#' }
+      socials: { facebook: '#', instagram: '#', twitter: '#', linkedin: '#' }
     },
     {
       id: 4,
@@ -118,7 +119,7 @@ export const DataProvider = ({ children }) => {
       image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800',
       price: '€€',
       type: 'Apartamento',
-      socials: { website: '#' }
+      socials: { facebook: '#', instagram: '#', twitter: '#', linkedin: '#' }
     }
   ];
 
@@ -136,7 +137,7 @@ export const DataProvider = ({ children }) => {
     try {
       const saved = localStorage.getItem(key);
       const savedVersion = localStorage.getItem('dataVersion');
-      const CURRENT_VERSION = '2.1'; // Bumped to force load of new dummy data
+      const CURRENT_VERSION = '2.4'; // Bumped to force load of new dummy data
       if (saved && savedVersion === CURRENT_VERSION) {
         return JSON.parse(saved);
       }

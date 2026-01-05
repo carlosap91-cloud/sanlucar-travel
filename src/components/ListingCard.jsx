@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ListingCard = ({ image, title, subtitle, rating, description, price, onAction, actionLabel = "Ver disponibilidad", socials, borderColor }) => {
+const ListingCard = ({ image, title, subtitle, rating, description, price, onAction, actionLabel = "Ver disponibilidad", socials, borderColor, className = "" }) => {
     return (
         <>
-            <div className="listing-card card-hover-effect" style={{
+            <div className={`listing-card card-hover-effect ${className}`} style={{
                 background: 'white',
                 borderRadius: 'var(--radius-card)',
                 overflow: 'hidden',
@@ -50,7 +50,7 @@ const ListingCard = ({ image, title, subtitle, rating, description, price, onAct
                                     ))}
                                 </div>
                             )}
-                            <h3 className="card-title" style={{ margin: 0, fontSize: '1.25rem', color: '#1f2937' }}>{title}</h3>
+                            <h3 className="card-title" style={{ margin: 0, fontSize: '1.25rem', color: 'var(--color-primary)' }}>{title}</h3>
                             {subtitle && <p className="card-subtitle" style={{ margin: '0.3rem 0 0', fontSize: '0.9rem', color: '#9ca3af' }}>{subtitle}</p>}
                         </div>
                     </div>
@@ -82,7 +82,7 @@ const ListingCard = ({ image, title, subtitle, rating, description, price, onAct
                                         onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-primary)'; e.currentTarget.style.color = 'white' }}
                                         onMouseLeave={(e) => { e.currentTarget.style.background = '#f3f4f6'; e.currentTarget.style.color = '#6b7280' }}
                                     >
-                                        <i className={`fab fa-${net}`}></i>
+                                        <i className={net === 'website' ? "fas fa-globe" : `fab fa-${net}`}></i>
                                     </a>
                                 ))}
                             </div>
@@ -119,59 +119,74 @@ const ListingCard = ({ image, title, subtitle, rating, description, price, onAct
                 .card-image-container { height: 220px; width: 100%; }
                 
                 @media (max-width: 768px) {
-                    .listing-card {
-                        flex-direction: column !important;
-                        height: auto !important;
-                        margin-bottom: 1.5rem;
-                        border-radius: 12px;
-                        overflow: hidden;
-                        box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Softer shadow */
+                    /* Only apply horizontal layout if NOT compact mode */
+                    .listing-card:not(.compact-card):not(.compact-card-mobile) {
+                        flex-direction: row !important;
+                        height: 140px !important; /* Fixed height for horizontal layout */
+                        align-items: center !important;
+                        margin-bottom: 1rem;
+                        border-radius: 16px;
                     }
                     
-                    .card-image-container {
-                        width: 100% !important;
-                        height: 200px !important; /* Cinematic aspect ratio */
+                    .listing-card:not(.compact-card):not(.compact-card-mobile) .card-image-container {
+                        width: 130px !important;
+                        height: 100% !important;
+                        flex-shrink: 0;
                     }
 
-                    .card-content {
-                        padding: 1.25rem !important;
+                    .listing-card:not(.compact-card):not(.compact-card-mobile) .card-content {
+                        padding: 0.8rem 1rem !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        justify-content: center !important;
+                        text-align: left !important;
                     }
-
+                    
+                    /* Common mobile adjustments that apply to BOTH modes but might need tweaking */
                     .card-title {
-                        font-size: 1.2rem !important;
-                        margin-bottom: 0.25rem !important;
+                        font-size: 1.1rem !important;
                     }
 
                     .card-subtitle {
-                        font-size: 0.9rem !important;
-                        margin-bottom: 0.75rem !important;
-                    }
-
-                    /* Restore Description visibility */
-                    .card-description {
-                        display: -webkit-box !important;
-                        font-size: 0.95rem;
-                        line-height: 1.5;
-                        color: #555;
-                        margin-bottom: 1rem;
-                    }
-
-                    /* Restore Socials */
-                    .card-socials {
-                        display: flex !important;
-                        margin-bottom: 1rem;
-                    }
-                    
-                    /* Full width button */
-                    .card-button {
-                        width: 100%;
-                        padding: 0.9rem !important;
-                        font-weight: 600;
-                    }
-                    
-                    .card-price-tag {
                         font-size: 0.85rem !important;
-                        padding: 4px 10px !important;
+                    }
+
+                    /* Hide description on mobile to save space */
+                    .card-description {
+                        display: none !important;
+                    }
+
+                    /* Hide social buttons on mobile to save space */
+                    .card-socials {
+                        display: none !important;
+                    }
+                    
+                    /* Compact mode specific adjustments - ONLY FOR MOBILE OR WHEN EXPLICITLY COMPACT */
+                    .listing-card.compact-card-mobile .card-image-container {
+                         height: 120px !important;
+                    }
+                    
+                    .listing-card.compact-card-mobile .card-content {
+                        padding: 0.8rem !important;
+                    }
+                    
+                    .listing-card.compact-card-mobile .card-button {
+                        padding: 0.4rem !important;
+                        font-size: 0.8rem !important;
+                    }
+
+                    /* On Desktop, revert compact-card-mobile to normal if screen is large */
+                    @media (min-width: 769px) {
+                        .listing-card.compact-card-mobile .card-image-container {
+                            height: 220px !important;
+                        }
+                        .listing-card.compact-card-mobile .card-content {
+                            padding: 1.5rem !important;
+                        }
+                        .listing-card.compact-card-mobile .card-button {
+                            padding: 0.8rem !important;
+                            font-size: 1rem !important;
+                        }
                     }
                 }
             `}</style>
