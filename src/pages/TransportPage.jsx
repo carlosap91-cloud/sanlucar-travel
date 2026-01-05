@@ -3,6 +3,13 @@ import { useData } from '../context/DataContext';
 import ListingLayout from '../components/ListingLayout';
 import ListingCard from '../components/ListingCard';
 
+// Images
+import airportImg from '../assets/transport/airport.png';
+import trainImg from '../assets/transport/train.png';
+import busInterImg from '../assets/transport/bus_interurban.png';
+import busUrbanImg from '../assets/transport/bus_urban.png';
+import taxiImg from '../assets/transport/taxi.png';
+
 const TransportPage = () => {
     const { transport } = useData();
 
@@ -13,7 +20,7 @@ const TransportPage = () => {
             name: 'Aeropuerto de Jerez',
             service: 'Avión (27 km)',
             description: 'Conexiones nacionales e internacionales. A 30 min en taxi o coche.',
-            image: 'https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?auto=format&fit=crop&q=80&w=800',
+            image: airportImg,
             price: 'Taxi ~45€',
             link: 'https://www.aena.es/es/jerez.html',
             actionLabel: 'Información Aeropuerto'
@@ -23,7 +30,7 @@ const TransportPage = () => {
             name: 'Estación de Tren Jerez',
             service: 'Renfe / AVE (25 km)',
             description: 'Enlace alta velocidad. Conexión con Sanlúcar mediante Bus o Taxi.',
-            image: 'https://images.unsplash.com/photo-1532105956690-b14a887bb963?auto=format&fit=crop&q=80&w=800',
+            image: trainImg,
             price: 'Bus 2.50€',
             link: 'https://www.renfe.com',
             actionLabel: 'Información Renfe'
@@ -33,10 +40,13 @@ const TransportPage = () => {
             name: 'Estación de Autobuses',
             service: 'InterBus / Monbus',
             description: 'Av. Constitución. Conexiones con Sevilla, Cádiz y Chipiona. Tel: 956 38 50 60',
-            image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800',
+            image: busInterImg,
             price: 'Desde 2€',
-            link: 'https://comprasweb.interbus.es/venta/',
-            actionLabel: 'Información Estación'
+            // link: Removed in favor of specific actions
+            actions: [
+                { label: 'InterBus', onClick: () => window.open('https://grupointerbus.com/', '_blank') },
+                { label: 'Monbus', onClick: () => window.open('https://www.monbus.es/es', '_blank') }
+            ]
         }
     ];
 
@@ -54,7 +64,7 @@ const TransportPage = () => {
                     • <b>L3:</b> Hospital - Barrio Alto - Centro
                 </span>
             ),
-            image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80&w=800',
+            image: busUrbanImg,
             price: 'Ordinario 1.10€',
             link: 'https://sanlucar.avanzagrupo.com/lineas-y-horarios/plano-general',
             actionLabel: 'Ver Horarios y Líneas'
@@ -64,7 +74,7 @@ const TransportPage = () => {
             name: 'Radio Taxi Sanlúcar',
             service: '24 Horas / 7 Días',
             description: 'Paradas: Hospital, El Palmar, Barrio Alto, Plaza del Pino. Tel: 956 360 004 / 956 360 005',
-            image: 'https://images.unsplash.com/photo-1619059558110-c45be64b73ae?auto=format&fit=crop&q=80&w=800',
+            image: taxiImg,
             price: 'Taxímetro',
             link: 'tel:956360004',
             actionLabel: 'Llamar a RadioTaxi Sanlúcar'
@@ -93,8 +103,9 @@ const TransportPage = () => {
                                     description={item.description}
                                     price={item.price}
                                     actionLabel={item.actionLabel}
+                                    actions={item.actions}
                                     borderColor="var(--color-secondary)"
-                                    onAction={() => window.open(item.link, '_blank')}
+                                    onAction={() => item.link && window.open(item.link, '_blank')}
                                 />
                             ))}
                         </div>

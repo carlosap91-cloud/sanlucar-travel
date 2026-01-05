@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ListingCard = ({ image, title, subtitle, rating, description, price, onAction, actionLabel = "Ver disponibilidad", socials, borderColor, className = "" }) => {
+const ListingCard = ({ image, title, subtitle, rating, description, price, onAction, actionLabel = "Ver disponibilidad", actions, socials, borderColor, className = "" }) => {
     return (
         <>
             <div className={`listing-card card-hover-effect ${className}`} style={{
@@ -88,27 +88,55 @@ const ListingCard = ({ image, title, subtitle, rating, description, price, onAct
                             </div>
                         )}
 
-                        <button
-                            onClick={onAction}
-                            aria-label={`${actionLabel} para ${title}`}
-                            className="card-button"
-                            style={{
-                                width: '100%',
-                                padding: '0.8rem',
-                                background: 'var(--color-primary)',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: 'var(--radius-btn)',
-                                fontSize: '1rem',
-                                fontWeight: '600',
-                                cursor: 'pointer',
-                                transition: 'background 0.3s'
-                            }}
-                            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-primary-dark)'}
-                            onMouseLeave={(e) => e.currentTarget.style.background = 'var(--color-primary)'}
-                        >
-                            {actionLabel}
-                        </button>
+                        {actions ? (
+                            <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                {actions.map((action, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={action.onClick}
+                                        className="card-button"
+                                        style={{
+                                            flex: 1,
+                                            padding: '0.8rem',
+                                            background: action.secondary ? '#f3f4f6' : 'var(--color-primary)',
+                                            color: action.secondary ? '#4b5563' : 'white',
+                                            border: 'none',
+                                            borderRadius: 'var(--radius-btn)',
+                                            fontSize: '0.9rem',
+                                            fontWeight: '600',
+                                            cursor: 'pointer',
+                                            transition: 'background 0.3s'
+                                        }}
+                                        onMouseEnter={(e) => !action.secondary && (e.currentTarget.style.background = 'var(--color-primary-dark)')}
+                                        onMouseLeave={(e) => !action.secondary && (e.currentTarget.style.background = 'var(--color-primary)')}
+                                    >
+                                        {action.label}
+                                    </button>
+                                ))}
+                            </div>
+                        ) : (
+                            <button
+                                onClick={onAction}
+                                aria-label={`${actionLabel} para ${title}`}
+                                className="card-button"
+                                style={{
+                                    width: '100%',
+                                    padding: '0.8rem',
+                                    background: 'var(--color-primary)',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: 'var(--radius-btn)',
+                                    fontSize: '1rem',
+                                    fontWeight: '600',
+                                    cursor: 'pointer',
+                                    transition: 'background 0.3s'
+                                }}
+                                onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-primary-dark)'}
+                                onMouseLeave={(e) => e.currentTarget.style.background = 'var(--color-primary)'}
+                            >
+                                {actionLabel}
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>
