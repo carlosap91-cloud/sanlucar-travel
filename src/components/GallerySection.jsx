@@ -33,6 +33,32 @@ const GallerySection = () => {
                                 font-size: 2rem !important;
                             }
                         }
+                        
+                        /* Responsive Grid Layout */
+                        .gallery-grid {
+                            display: grid;
+                            gap: 1rem;
+                            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Mobile: Small cards (2 cols on 375px) */
+                            grid-auto-rows: 150px; /* Mobile: Reduced height */
+                        }
+                        
+                        /* Mobile Force 2 cols if needed */
+                        @media (max-width: 480px) {
+                            .gallery-grid {
+                                grid-template-columns: repeat(2, 1fr);
+                            }
+                        }
+                        
+                        @media (min-width: 768px) {
+                            .gallery-grid {
+                                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                                grid-auto-rows: 160px; /* Desktop: Reduced height */
+                            }
+                            /* Mosaic Spans for Desktop */
+                            .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+                            .gallery-item:nth-child(3) { grid-row: span 2; }
+                            .gallery-item:nth-child(5) { grid-column: span 2; }
+                        }
                     `}</style>
                     <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
                         <span style={{
@@ -53,12 +79,8 @@ const GallerySection = () => {
                     </div>
 
                     {/* CSS Grid Masonry Layout */}
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                        gap: '1rem',
-                        autoRows: '200px'
-                    }}>
+                    {/* CSS Grid Masonry Layout */}
+                    <div className="gallery-grid">
                         {/* 
                             Note: Inline styles for masonry are tricky without Tailwind classes like 'col-span-2'.
                             We'll use a standard responsible grid for simplicity and robustness in this custom styling.
@@ -73,10 +95,7 @@ const GallerySection = () => {
                                     position: 'relative',
                                     cursor: 'zoom-in',
                                     boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-                                    border: '3px solid var(--color-secondary)', // Inner Warm Border
-                                    // Simple alternating pattern for interest
-                                    gridColumn: window.innerWidth > 768 && (index === 0 || index === 4) ? 'span 2' : 'span 1',
-                                    gridRow: window.innerWidth > 768 && (index === 0 || index === 2) ? 'span 2' : 'span 1',
+                                    border: '3px solid var(--color-secondary)',
                                     height: '100%'
                                 }}
                                 className="gallery-item"
