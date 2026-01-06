@@ -119,9 +119,31 @@ const MapPage = () => {
                             }}>
                                 ↱
                             </button>
+                            <a
+                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(searchQuery || 'Sanlúcar de Barrameda')}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="Abrir en Google Maps"
+                                style={{
+                                    background: 'white',
+                                    color: 'var(--color-primary)',
+                                    border: '1px solid var(--color-primary)',
+                                    borderRadius: '8px',
+                                    width: '40px',
+                                    height: '40px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    cursor: 'pointer',
+                                    fontSize: '1.2rem',
+                                    flexShrink: 0,
+                                    textDecoration: 'none'
+                                }}
+                            >
+                                🗺️
+                            </a>
                         </div>
 
-                        {/* The Iframe */}
                         {/* The Iframe */}
                         <iframe
                             src={mapUrl}
@@ -133,45 +155,6 @@ const MapPage = () => {
                             referrerPolicy="no-referrer-when-downgrade"
                             title="Mapa de Sanlúcar"
                         ></iframe>
-
-                        {/* MASK to hide "View larger map" (Ampliar el mapa) overlay from Google */}
-                        <div style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '200px',
-                            height: '60px',
-                            background: 'white', // Matches container bg
-                            zIndex: 5,
-                            pointerEvents: 'none' // Allow clicks to pass through if needed, but we want to hide visual text
-                        }}></div>
-
-                        {/* "Open in Maps" Button - Square Icon, aligned with Satellite */}
-                        <a
-                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(searchQuery || 'Sanlúcar de Barrameda')}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            title="Abrir en Google Maps"
-                            style={{
-                                position: 'absolute',
-                                bottom: '25px', // Aligns with typical satellite box bottom
-                                left: '60px',   // Next to satellite box (approx 50px width + gap)
-                                background: 'white',
-                                width: '40px',
-                                height: '40px',
-                                borderRadius: '2px', // Google buttons are usually slightly rounded squares
-                                textDecoration: 'none',
-                                color: '#333',
-                                fontSize: '1.2rem',
-                                boxShadow: '0 1px 4px rgba(0,0,0,0.3)',
-                                zIndex: 10,
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            🗺️
-                        </a>
                     </div>
                 </div>
             </section>
