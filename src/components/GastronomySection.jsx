@@ -5,7 +5,7 @@ import gastronomyImg from '../assets/gastronomy.png';
 const GastronomySection = () => {
     return (
         <section id="gastronomia" className="section-padding" style={{ background: 'var(--color-bg-alt)' }}>
-            <div className="container">
+            <div style={{ width: '100%', maxWidth: '1440px', margin: '0 auto', padding: '0 5vw' }}>
                 <div style={{
                     border: '3px solid var(--color-primary)',
                     borderRadius: '40px',

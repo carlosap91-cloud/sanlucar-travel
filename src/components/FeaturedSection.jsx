@@ -33,7 +33,7 @@ const FeaturedSection = () => {
 
     return (
         <section className="section-padding" style={{ background: 'white' }}>
-            <div className="container">
+            <div style={{ width: '100%', maxWidth: '1440px', margin: '0 auto', padding: '0 5vw' }}>
                 <div className="featured-card" style={{
                     border: '3px solid var(--color-primary)',
                     borderRadius: '40px',
@@ -58,10 +58,11 @@ const FeaturedSection = () => {
                         <h2 style={{ fontSize: '2.5rem', margin: '0.5rem 0' }}>Favoritos de los Viajeros</h2>
                     </div>
 
-                    <div className="grid grid-three">
+                    <div className="listing-grid">
                         {displayItems.map(item => (
                             <ListingCard
                                 key={`${item.type}-${item.id}`}
+                                className="compact-card-mobile"
                                 image={item.image}
                                 title={item.name}
                                 subtitle={item.type}

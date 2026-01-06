@@ -14,8 +14,13 @@ const Hero = () => {
     };
 
     return (
-        <section id="inicio" className="container hero-container" style={{
-            marginBottom: '4rem'
+        <section id="inicio" className="hero-container" style={{
+            marginBottom: '4rem',
+            width: '100%',
+            maxWidth: '1440px',
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            padding: '0 5vw'
         }}>
             <style>{`
                 .hero-container {
