@@ -15,7 +15,7 @@ const GallerySection = () => {
 
     return (
         <section className="section-padding" style={{ background: '#fff' }}>
-            <div style={{ width: '100%', maxWidth: '1440px', margin: '0 auto', padding: '0 5vw' }}>
+            <div style={{ width: '100%', maxWidth: 'calc(1440px + 4rem)', margin: '0 auto', padding: '0 5vw' }}>
                 {/* Outer Blue Container */}
                 <div className="gallery-card" style={{
                     border: '3px solid var(--color-primary)',

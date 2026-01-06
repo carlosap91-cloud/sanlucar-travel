@@ -5,7 +5,7 @@ import natureImg from '../assets/nature.jpg';
 const NatureSection = () => {
     return (
         <section id="experiencias" className="section-padding">
-            <div style={{ width: '100%', maxWidth: '1440px', margin: '0 auto', padding: '0 5vw' }}>
+            <div style={{ width: '100%', maxWidth: 'calc(1440px + 4rem)', margin: '0 auto', padding: '0 5vw' }}>
                 <div style={{
                     border: '3px solid var(--color-primary)',
                     borderRadius: '40px',

@@ -17,7 +17,7 @@ const Hero = () => {
         <section id="inicio" className="hero-container" style={{
             marginBottom: '4rem',
             width: '100%',
-            maxWidth: '1440px',
+            maxWidth: 'calc(1440px + 4rem)',
             marginRight: 'auto',
             marginLeft: 'auto',
             padding: '0 5vw'
