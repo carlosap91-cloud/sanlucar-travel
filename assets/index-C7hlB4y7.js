@@ -188,7 +188,33 @@ ${this.customData.serverResponse}`:this.message=this._baseMessage}}var Vi;(funct
                                 font-size: 2rem !important;
                             }
                         }
-                    `}),f.jsxs("div",{style:{textAlign:"center",marginBottom:"3rem"},children:[f.jsx("span",{style:{color:"var(--color-secondary)",fontWeight:700,textTransform:"uppercase",fontSize:"0.9rem",letterSpacing:"2px"},children:"El Encanto Visual"}),f.jsx("h2",{style:{fontSize:"2.5rem",margin:"0.5rem 0",color:"var(--color-primary)"},children:"Sanlúcar en Imágenes"}),f.jsx("p",{style:{color:"#666",maxWidth:"600px",margin:"0 auto"},children:"Perderse por sus calles, saborear sus manjares y contemplar sus atardeceres."})]}),f.jsx("div",{style:{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(250px, 1fr))",gap:"1rem",autoRows:"200px"},children:r.map((s,o)=>f.jsxs("div",{onClick:()=>i(s),style:{borderRadius:"16px",overflow:"hidden",position:"relative",cursor:"zoom-in",boxShadow:"0 4px 15px rgba(0,0,0,0.1)",border:"3px solid var(--color-secondary)",gridColumn:window.innerWidth>768&&(o===0||o===4)?"span 2":"span 1",gridRow:window.innerWidth>768&&(o===0||o===2)?"span 2":"span 1",height:"100%"},className:"gallery-item",children:[f.jsx("img",{src:s.src,alt:s.alt,style:{width:"100%",height:"100%",objectFit:"cover",transition:"transform 0.5s ease"},onMouseEnter:u=>u.target.style.transform="scale(1.1)",onMouseLeave:u=>u.target.style.transform="scale(1.0)"}),f.jsx("div",{style:{position:"absolute",bottom:0,left:0,width:"100%",padding:"1rem",background:"linear-gradient(to top, rgba(0,0,0,0.7), transparent)",color:"white",fontWeight:500,opacity:0,transition:"opacity 0.3s"},onMouseEnter:u=>u.currentTarget.style.opacity=1,onMouseLeave:u=>u.currentTarget.style.opacity=0,children:s.alt})]},s.id))}),t&&f.jsxs("div",{style:{position:"fixed",top:0,left:0,right:0,bottom:0,background:"rgba(0,0,0,0.9)",zIndex:9999,display:"flex",alignItems:"center",justifyContent:"center",padding:"2rem"},onClick:()=>i(null),children:[f.jsx("img",{src:t.src,alt:t.alt,style:{maxWidth:"90%",maxHeight:"90vh",borderRadius:"8px",boxShadow:"0 0 50px rgba(0,0,0,0.5)",border:"3px solid var(--color-secondary)"}}),f.jsx("button",{style:{position:"absolute",top:"20px",right:"20px",background:"none",border:"none",color:"white",fontSize:"2rem",cursor:"pointer"},children:"✕"})]})]})}),f.jsx("style",{children:`
+                        
+                        /* Responsive Grid Layout */
+                        .gallery-grid {
+                            display: grid;
+                            gap: 1rem;
+                            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Mobile: Small cards (2 cols on 375px) */
+                            grid-auto-rows: 150px; /* Mobile: Reduced height */
+                        }
+                        
+                        /* Mobile Force 2 cols if needed */
+                        @media (max-width: 480px) {
+                            .gallery-grid {
+                                grid-template-columns: repeat(2, 1fr);
+                            }
+                        }
+                        
+                        @media (min-width: 768px) {
+                            .gallery-grid {
+                                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                                grid-auto-rows: 160px; /* Desktop: Reduced height */
+                            }
+                            /* Mosaic Spans for Desktop */
+                            .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+                            .gallery-item:nth-child(3) { grid-row: span 2; }
+                            .gallery-item:nth-child(5) { grid-column: span 2; }
+                        }
+                    `}),f.jsxs("div",{style:{textAlign:"center",marginBottom:"3rem"},children:[f.jsx("span",{style:{color:"var(--color-secondary)",fontWeight:700,textTransform:"uppercase",fontSize:"0.9rem",letterSpacing:"2px"},children:"El Encanto Visual"}),f.jsx("h2",{style:{fontSize:"2.5rem",margin:"0.5rem 0",color:"var(--color-primary)"},children:"Sanlúcar en Imágenes"}),f.jsx("p",{style:{color:"#666",maxWidth:"600px",margin:"0 auto"},children:"Perderse por sus calles, saborear sus manjares y contemplar sus atardeceres."})]}),f.jsx("div",{className:"gallery-grid",children:r.map((s,o)=>f.jsxs("div",{onClick:()=>i(s),style:{borderRadius:"16px",overflow:"hidden",position:"relative",cursor:"zoom-in",boxShadow:"0 4px 15px rgba(0,0,0,0.1)",border:"3px solid var(--color-secondary)",height:"100%"},className:"gallery-item",children:[f.jsx("img",{src:s.src,alt:s.alt,style:{width:"100%",height:"100%",objectFit:"cover",transition:"transform 0.5s ease"},onMouseEnter:u=>u.target.style.transform="scale(1.1)",onMouseLeave:u=>u.target.style.transform="scale(1.0)"}),f.jsx("div",{style:{position:"absolute",bottom:0,left:0,width:"100%",padding:"1rem",background:"linear-gradient(to top, rgba(0,0,0,0.7), transparent)",color:"white",fontWeight:500,opacity:0,transition:"opacity 0.3s"},onMouseEnter:u=>u.currentTarget.style.opacity=1,onMouseLeave:u=>u.currentTarget.style.opacity=0,children:s.alt})]},s.id))}),t&&f.jsxs("div",{style:{position:"fixed",top:0,left:0,right:0,bottom:0,background:"rgba(0,0,0,0.9)",zIndex:9999,display:"flex",alignItems:"center",justifyContent:"center",padding:"2rem"},onClick:()=>i(null),children:[f.jsx("img",{src:t.src,alt:t.alt,style:{maxWidth:"90%",maxHeight:"90vh",borderRadius:"8px",boxShadow:"0 0 50px rgba(0,0,0,0.5)",border:"3px solid var(--color-secondary)"}}),f.jsx("button",{style:{position:"absolute",top:"20px",right:"20px",background:"none",border:"none",color:"white",fontSize:"2rem",cursor:"pointer"},children:"✕"})]})]})}),f.jsx("style",{children:`
                 .gallery-item:hover div {
                     opacity: 1 !important;
                 }
