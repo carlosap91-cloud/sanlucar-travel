@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ListingCard from '../components/ListingCard';
+import ListingLayout from '../components/ListingLayout';
 
 const GastronomyHubPage = () => {
     const navigate = useNavigate();
@@ -32,17 +33,10 @@ const GastronomyHubPage = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '2rem', minHeight: '100vh', background: 'var(--color-bg-alt)' }}>
-            <div className="container" style={{ paddingBottom: '4rem' }}>
-                <div className="text-center" style={{ marginBottom: '4rem' }}>
-                    <h1 style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--color-primary)' }}>
-                        Gastronomía <span style={{ color: 'var(--color-secondary)' }}>Sanluqueña</span>
-                    </h1>
-                    <p style={{ color: 'var(--color-text-light)', maxWidth: '700px', margin: '0 auto' }}>
-                        Capital Española de la Gastronomía. Descubre dónde comer, beber y comprar los productos que hacen única a nuestra tierra.
-                    </p>
-                </div>
-
+        <ListingLayout
+            title={<>Gastronomía <span style={{ color: 'var(--color-secondary)' }}>Sanluqueña</span></>}
+            subtitle="Capital Española de la Gastronomía. Descubre dónde comer, beber y comprar los productos que hacen única a nuestra tierra."
+            content={
                 <div className="listing-grid">
                     {categories.map((cat, idx) => (
                         <div key={idx} onClick={() => navigate(cat.link)} style={{ cursor: 'pointer' }}>
@@ -58,8 +52,8 @@ const GastronomyHubPage = () => {
                         </div>
                     ))}
                 </div>
-            </div>
-        </div>
+            }
+        />
     );
 };
 

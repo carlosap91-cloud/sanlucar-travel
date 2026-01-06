@@ -1,5 +1,6 @@
 import React from 'react';
 import ListingCard from '../components/ListingCard';
+import ListingLayout from '../components/ListingLayout';
 
 const EventsPage = () => {
     const events = [
@@ -27,17 +28,10 @@ const EventsPage = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '2rem', minHeight: '100vh', background: 'var(--color-bg-alt)' }}>
-            <div className="container" style={{ paddingBottom: '4rem' }}>
-                <div className="text-center" style={{ marginBottom: '4rem' }}>
-                    <h1 style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--color-primary)' }}>
-                        Agenda <span style={{ color: 'var(--color-secondary)' }}>Cultural</span>
-                    </h1>
-                    <p style={{ color: 'var(--color-text-light)', maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem' }}>
-                        Carreras de caballos, Feria de la Manzanilla, festivales de música... siente el pulso de Sanlúcar.
-                    </p>
-                </div>
-
+        <ListingLayout
+            title={<>Agenda <span style={{ color: 'var(--color-secondary)' }}>Cultural</span></>}
+            subtitle="Carreras de caballos, Feria de la Manzanilla, festivales de música... siente el pulso de Sanlúcar."
+            content={
                 <div className="listing-grid">
                     {events.map((evt) => (
                         <ListingCard
@@ -53,8 +47,8 @@ const EventsPage = () => {
                         />
                     ))}
                 </div>
-            </div>
-        </div>
+            }
+        />
     );
 };
 

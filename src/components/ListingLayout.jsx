@@ -31,12 +31,15 @@ const ListingLayout = ({ title, subtitle, sidebar, content }) => {
 
             {/* Horizontal Filter Toolbar (previously sidebar) */}
             {/* Always visible, logic handled internally by SidebarFilters (Single Button) */}
-            <div className="filter-container" style={{ marginBottom: '2rem' }}>
-                {React.isValidElement(sidebar)
-                    ? React.cloneElement(sidebar, { layout: 'horizontal' })
-                    : sidebar
-                }
-            </div>
+            {/* Horizontal Filter Toolbar (previously sidebar) */}
+            {sidebar && (
+                <div className="filter-container" style={{ marginBottom: '2rem' }}>
+                    {React.isValidElement(sidebar)
+                        ? React.cloneElement(sidebar, { layout: 'horizontal' })
+                        : sidebar
+                    }
+                </div>
+            )}
 
             {/* Content Area (Full Width) */}
             <div className="content-column">

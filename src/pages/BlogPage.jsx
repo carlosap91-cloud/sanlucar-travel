@@ -1,5 +1,6 @@
 import React from 'react';
 import ListingCard from '../components/ListingCard';
+import ListingLayout from '../components/ListingLayout';
 
 const BlogPage = () => {
     const posts = [
@@ -20,17 +21,10 @@ const BlogPage = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '2rem', minHeight: '100vh', background: 'var(--color-bg-alt)' }}>
-            <div className="container" style={{ paddingBottom: '4rem' }}>
-                <div className="text-center" style={{ marginBottom: '4rem' }}>
-                    <h1 style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--color-primary)' }}>
-                        El Rincón del <span style={{ color: 'var(--color-secondary)' }}>Sanluqueño</span>
-                    </h1>
-                    <p style={{ color: 'var(--color-text-light)', maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem' }}>
-                        Consejos locales, secretos gastronómicos y actualidad de nuestra ciudad.
-                    </p>
-                </div>
-
+        <ListingLayout
+            title={<>El Rincón del <span style={{ color: 'var(--color-secondary)' }}>Sanluqueño</span></>}
+            subtitle="Consejos locales, secretos gastronómicos y actualidad de nuestra ciudad."
+            content={
                 <div className="listing-grid">
                     {posts.map((post) => (
                         <ListingCard
@@ -46,8 +40,8 @@ const BlogPage = () => {
                         />
                     ))}
                 </div>
-            </div>
-        </div>
+            }
+        />
     );
 };
 
